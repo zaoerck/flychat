@@ -5,12 +5,17 @@
     android:background="@color/white"
     android:clickable="true"
     android:orientation="vertical" >
-    
+
     <include layout="@layout/common_title_bg" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/mapActivity" />
+        android:id="@+id/mapTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="140dp"
+        android:background="@android:drawable/editbox_background"
+        android:text="@string/mapActivity"
+        android:textColor="@color/black" />
+
+    
 
 </LinearLayout>

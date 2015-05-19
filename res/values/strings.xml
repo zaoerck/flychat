@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="mapActivity">这里是地图Activity</string>
+    <string name="mapActivity">摇一摇手机</string>
     <string name="app_name">推聊</string>
     <string name="register_tip">提示 :以上均为必选项!</string>
     <string name="net_error_tip">当前网络不可用，请检查你的网络设置</string>
