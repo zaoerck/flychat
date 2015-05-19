@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.baidu.android.pushservice.PushManager;
+import com.example.floatviewdemo.service.FloatViewService;
 import com.google.gson.Gson;
 import com.way.adapter.RecentAdapter;
 import com.way.app.PushApplication;
@@ -149,6 +150,25 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 		mHomeWatcher.setOnHomePressedListener(null);
 		mHomeWatcher.stopWatch();
 		PushMessageReceiver.ehList.remove(this);// 暂停就移除监听
+	}
+	
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		 Intent intent = new Intent(MainActivity.this, FloatViewService.class);  
+         //启动FloatViewService  
+         startService(intent);  
+		super.onStart();
+	}
+	
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		// 销毁悬浮窗
+		Intent intent = new Intent(MainActivity.this, FloatViewService.class);  
+        //终止FloatViewService  
+        stopService(intent); 
+        super.onStop();
 	}
 
 	private void initData() {

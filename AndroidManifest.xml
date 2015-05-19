@@ -4,6 +4,8 @@
     android:versionCode="8"
     android:versionName="@string/versionnum" >
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
@@ -127,6 +129,9 @@
             android:name="api_key"
             android:value="W9RjavhFwQFXNKwPpSCg3iHh" />
         <!-- push service end -->
+        
+        <service android:name="com.example.floatviewdemo.service.FloatViewService"></service>
+    
     </application>
 
 </manifest>
