@@ -103,6 +103,13 @@ public class MapActivity extends Activity implements OnClickListener, SensorEven
 	}
 	
 	@Override  
+    protected void onPause()  
+    {  
+        super.onPause();  
+        sensorManager.unregisterListener(this);  
+    } 
+	
+	@Override  
     protected void onResume()  
     {  
         super.onResume();  
