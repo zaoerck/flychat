@@ -115,7 +115,7 @@ public class FloatViewService extends Service
             @Override  
             public void onClick(View v)   
             {  
-                Toast.makeText(FloatViewService.this, "一百块都不给我！", Toast.LENGTH_SHORT).show();  
+                Toast.makeText(FloatViewService.this, "跳转到添加好友", Toast.LENGTH_SHORT).show();  
             }  
         });  
     }  
