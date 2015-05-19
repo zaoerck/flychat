@@ -1,5 +1,7 @@
 package com.example.floatviewdemo.service;
 
+
+import com.way.activity.MapActivity;
 import com.way.push.R;
 
 import android.annotation.SuppressLint;
@@ -115,7 +117,10 @@ public class FloatViewService extends Service
             @Override  
             public void onClick(View v)   
             {  
-                Toast.makeText(FloatViewService.this, "跳转到添加好友", Toast.LENGTH_SHORT).show();  
+            	Intent intent = new Intent(getApplicationContext(),MapActivity.class);
+            	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            	startActivity(intent);
+            	Toast.makeText(FloatViewService.this, "跳转到添加好友", Toast.LENGTH_SHORT).show();  
             }  
         });  
     }  

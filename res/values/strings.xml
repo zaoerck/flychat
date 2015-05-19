@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="mapActivity">这里是地图Activity</string>
     <string name="app_name">推聊</string>
     <string name="register_tip">提示 :以上均为必选项!</string>
     <string name="net_error_tip">当前网络不可用，请检查你的网络设置</string>
@@ -8,7 +9,7 @@
     <string name="center_title_name">最近会话</string>
     <string name="right_title_name">设置</string>
     <string name="no_chat">暂时没有新消息</string>
-     <string name="versionnum">V1.2.3</string>
+    <string name="versionnum">V1.2.3</string>
     <!-- 上拉下拉 -->
     <string name="xlistview_header_hint_normal">下拉刷新</string>
     <string name="xlistview_header_hint_ready">释放立即刷新</string>
@@ -65,10 +66,13 @@
     <string name="pull_to_refresh_pull_label">下拉刷新…</string>
     <string name="pull_to_refresh_release_label">放开以刷新…</string>
     <string name="pull_to_refresh_refreshing_label">正在载入…</string>
-	<string name="setting_about_description">弹指间，心无间！</string>
+    <string name="setting_about_description">弹指间，心无间！</string>
     <!-- Just use standard Pull Down String when pulling up. These can be set for languages which require it -->
     <string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string>
     <string name="pull_to_refresh_from_bottom_release_label">@string/pull_to_refresh_release_label</string>
     <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
+    <string name="title_activity_map">Map</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
