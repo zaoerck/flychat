@@ -8,10 +8,14 @@
 
     <include layout="@layout/common_title_bg" />
 
-    <com.baidu.mapapi.map.MapView  
-    android:id="@+id/bmapView"  
-    android:layout_width="fill_parent"  
-    android:layout_height="fill_parent"  
-    android:clickable="true" />
+    <TextView
+        android:id="@+id/mapTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="140dp"
+        android:background="@android:drawable/editbox_background"
+        android:text="@string/mapActivity"
+        android:textColor="@color/black" />
+
+    
 
 </LinearLayout>

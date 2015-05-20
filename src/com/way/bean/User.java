@@ -73,5 +73,5 @@ public class User implements Serializable {
 				+ ", nick=" + nick + ", headIcon=" + headIcon + ", group="
 				+ group + "]";
 	}
-
+	
 }
