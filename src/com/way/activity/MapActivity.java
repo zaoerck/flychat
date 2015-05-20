@@ -179,7 +179,7 @@ public class MapActivity extends Activity implements OnClickListener{
 	 */
 	private void init() {
 		mBaiduMap.setMyLocationEnabled(true);
-		mBaiduMap.setMaxAndMinZoomLevel(20, 15);
+		mBaiduMap.setMaxAndMinZoomLevel(19, 16);
 		// 1. 初始化LocationClient类
 		locationClient = new LocationClient(getApplicationContext());
 		// 2. 声明LocationListener类
