@@ -5,9 +5,6 @@ import java.util.TimerTask;
 
 import com.way.bean.Lanterns;
 import com.way.push.R;
-import com.way.push.R.layout;
-import com.way.push.R.menu;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -58,7 +55,6 @@ public class GameActivity extends Activity implements OnClickListener{
             AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this,  AlertDialog.THEME_HOLO_LIGHT)
                     .setTitle("猜灯谜")
                     .setMessage("三人行（打一字）")
-                    .setInverseBackgroundForced(true)
                     .setView(view);
 
             AlertDialog dialog=builder.create();
@@ -92,14 +88,14 @@ public class GameActivity extends Activity implements OnClickListener{
                     .setMessage("回答正确");
             AlertDialog alertDialog=builder.create();
             alertDialog.show();
-//            Timer timer = new Timer();
-//            TimerTask task = new TimerTask(){
-//            	public void run(){
-//            		Intent intent = new Intent(GameActivity.this, UserInfoActivity.class);
-//            		startActivity(intent);
-//            	}
-//            };
-//            timer.schedule(task, 2500);
+            Timer timer = new Timer();
+            TimerTask task = new TimerTask(){
+            	public void run(){
+            		Intent intent = new Intent(GameActivity.this, InfoActivity.class);
+            		startActivity(intent);
+            	}
+            };
+            timer.schedule(task, 1000);
         }
         else{
             Log.w("","wrong");
