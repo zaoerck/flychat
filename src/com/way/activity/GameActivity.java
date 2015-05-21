@@ -46,16 +46,19 @@ public class GameActivity extends Activity implements OnClickListener{
         new Thread(requestLanterns).start();
 	}
 	
+	
 	Handler updateBarHandler = new Handler(){
-        public void handleMessage(Message msg){
+        @SuppressLint("NewApi")
+		public void handleMessage(Message msg){
             progressBar.setVisibility(View.INVISIBLE);
             LayoutInflater inflater = (LayoutInflater)GameActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
             final View view = inflater.inflate(R.layout.lanternsgame_text, null);
 
 
-            AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this)
+            AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this,  AlertDialog.THEME_HOLO_LIGHT)
                     .setTitle("猜灯谜")
-                    .setMessage("三人行")
+                    .setMessage("三人行（打一字）")
+                    .setInverseBackgroundForced(true)
                     .setView(view);
 
             AlertDialog dialog=builder.create();
@@ -77,7 +80,7 @@ public class GameActivity extends Activity implements OnClickListener{
         }
     };
 
-    @SuppressLint("LongLogTag")
+    @SuppressLint({ "LongLogTag", "NewApi" })
     public void judgeAnswer(String lanternsanswerString){
         Log.w("输入内容",lanternsanswerString);
         boolean b1=lanternsanswerString.equals(lanterns.getAnswer());
@@ -85,11 +88,10 @@ public class GameActivity extends Activity implements OnClickListener{
 
         if(lanternsanswerString.equals("众")){
             Log.w("","right");
-            AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this)
+            AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this, AlertDialog.THEME_HOLO_LIGHT)
                     .setMessage("回答正确");
             AlertDialog alertDialog=builder.create();
             alertDialog.show();
-            
 //            Timer timer = new Timer();
 //            TimerTask task = new TimerTask(){
 //            	public void run(){
@@ -101,7 +103,7 @@ public class GameActivity extends Activity implements OnClickListener{
         }
         else{
             Log.w("","wrong");
-            AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this)
+            AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this, AlertDialog.THEME_HOLO_LIGHT)
                     .setMessage("回答错误,请重试");
             AlertDialog alertDialog=builder.create();
             alertDialog.show();

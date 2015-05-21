@@ -293,14 +293,8 @@ public class MapActivity extends Activity implements OnClickListener{
         @Override
         public void handleMessage(Message msg) {
 //            List<User> musers= (List<User>) msg.obj;
-        	Log.w("有没有显示", "1");
-        	if(users == null){
-        		Log.w("users", "is null");
-        	}
-        	else Log.w("users", users.toString());
             for (User user:users) {
 
-            	Log.w("有没有显示", "2");
                 LatLng point=new LatLng(user.getLatitude(),user.getLongitude());
                 //构建Marker图标
                 BitmapDescriptor bitmap = BitmapDescriptorFactory
@@ -312,7 +306,6 @@ public class MapActivity extends Activity implements OnClickListener{
 //             mBaiduMap = nMapView.getMap();
 //在地图上添加Marker，并显示
 
-            	Log.w("有没有显示", "3");
                 markers.add((Marker) mBaiduMap.addOverlay(option));
 
             }

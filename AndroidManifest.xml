@@ -171,10 +171,6 @@
             android:name="com.way.activity.GameActivity"
             android:label="@string/title_activity_game" >
         </activity>
-        <activity
-            android:name="com.way.activity.UserInfoActivity"
-            android:label="@string/title_activity_user_info" >
-        </activity>
     </application>
 
 </manifest>

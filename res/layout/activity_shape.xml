@@ -15,6 +15,7 @@
         android:background="@android:drawable/editbox_background"
         android:text="@string/mapActivity"
         android:textColor="@color/black" />
+    
 
     
 
