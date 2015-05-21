@@ -160,13 +160,25 @@
             android:name="com.way.activity.MapActivity"
             android:label="@string/title_activity_map" >
         </activity>
-        
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" >
         </service>
-        
+
+        <activity
+            android:name="com.way.activity.GameActivity"
+            android:label="@string/title_activity_game" >
+        </activity>
+        <activity
+            android:name="com.way.activity.UserInfoActivity"
+            android:label="@string/title_activity_user_info" >
+        </activity>
+        <activity
+            android:name="com.way.activity.UserInfoActivity"
+            android:label="@string/title_activity_user_info" >
+        </activity>
     </application>
 
 </manifest>

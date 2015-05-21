@@ -12,6 +12,9 @@ public class User implements Serializable {
 	private String nick;//
 	private int headIcon;//
 	private int group;
+	
+	private double latitude;//纬度
+    private double longitude;//经度
 
 	public User(String UserId, String channelId, String nick, int headIcon,
 			int group) {
@@ -73,5 +76,21 @@ public class User implements Serializable {
 				+ ", nick=" + nick + ", headIcon=" + headIcon + ", group="
 				+ group + "]";
 	}
+	
+	public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
 	
 }
