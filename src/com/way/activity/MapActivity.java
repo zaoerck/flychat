@@ -55,7 +55,6 @@ public class MapActivity extends Activity implements OnClickListener{
 
 	private TextView mTitle, mTitleLeftBtn;
 	TextView tv = null;  
-    Button button = null;
     
     public BDLocationListener myListener = new BDLocationListener() {
         @Override
@@ -104,7 +103,7 @@ public class MapActivity extends Activity implements OnClickListener{
         mBaiduMap = mMapView.getMap();
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
         mBaiduMap.setMyLocationEnabled(true);
-        mBaiduMap.setMaxAndMinZoomLevel(20,15);
+        mBaiduMap.setMaxAndMinZoomLevel(19,16);
         UiSettings ui=mBaiduMap.getUiSettings();
         ui.setCompassEnabled(false);
         ui.setRotateGesturesEnabled(false);
