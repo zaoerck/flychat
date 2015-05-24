@@ -1,35 +1,62 @@
 package com.way.activity;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-import com.way.bean.Lanterns;
+import com.way.game.GameView;
+import com.way.game.MyDialog;
+import com.way.game.OnStateListener;
+import com.way.game.OnTimerListener;
+import com.way.game.OnToolsChangeListener;
 import com.way.push.R;
+
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
-public class GameActivity extends Activity implements OnClickListener{
-	ProgressBar progressBar;
-    Lanterns lanterns=new Lanterns();
-    Button button;
+public class GameActivity extends Activity
+	implements OnClickListener,OnTimerListener,OnStateListener,OnToolsChangeListener{
 	
 	private TextView mTitle, mTitleLeftBtn;
-	TextView tv = null;  
+	TextView tv = null;
+	
+	private ImageButton btnPlay;
+	private ImageButton btnRefresh;
+	private ImageButton btnTip;
+	private ImageView imgTitle;
+	private GameView gameView;
+	private SeekBar progress;
+	private MyDialog dialog;
+	private ImageView clock;
+	private TextView textRefreshNum;
+	private TextView textTipNum;
+	
+	private MediaPlayer player;
+	
+	private Handler handler = new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			switch(msg.what){
+			case 0:
+				dialog = new MyDialog(GameActivity.this,gameView,"胜利！",gameView.getTotalTime() - progress.getProgress());
+				dialog.show();
+				break;
+			case 1:
+				dialog = new MyDialog(GameActivity.this,gameView,"失败！",gameView.getTotalTime() - progress.getProgress());
+				dialog.show();
+			}
+		}
+	};
+	
+  
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,138 +64,58 @@ public class GameActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_game);
 		initView();
 		
-		progressBar= (ProgressBar) findViewById(R.id.lanternsprogressBar);
-        progressBar.setVisibility(View.VISIBLE);
-        RequestLanterns requestLanterns=new RequestLanterns();
-        new Thread(requestLanterns).start();
+        GameView.initSound(this);
+        
+        Animation scale = AnimationUtils.loadAnimation(this,R.anim.scale_anim);
+        imgTitle.startAnimation(scale);
+        btnPlay.startAnimation(scale);
+        
+        player = MediaPlayer.create(this, R.raw.bg);
+        player.setLooping(true);//设置循环播放
+        player.start();
 	}
 	
 	
-	Handler updateBarHandler = new Handler(){
-        @SuppressLint("NewApi")
-		public void handleMessage(Message msg){
-            progressBar.setVisibility(View.INVISIBLE);
-            LayoutInflater inflater = (LayoutInflater)GameActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            final View view = inflater.inflate(R.layout.lanternsgame_text, null);
-
-
-            AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this,  AlertDialog.THEME_HOLO_LIGHT)
-                    .setTitle("猜灯谜")
-                    .setMessage("三人行（打一字）")
-                    .setView(view);
-
-            AlertDialog dialog=builder.create();
-            dialog.show();
-
-            button= (Button) view.findViewById(R.id.gameDialogButton);
-            Log.w("button",button.toString());
-
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    EditText lanternsanswer = (EditText) view.findViewById(R.id.lanternsanswer);
-                    String lanternsanswerString = lanternsanswer.getText().toString();
-
-                    judgeAnswer(lanternsanswerString);
-                }
-            });
-
-        }
-    };
-
-    @SuppressLint({ "LongLogTag", "NewApi" })
-    public void judgeAnswer(String lanternsanswerString){
-        Log.w("输入内容",lanternsanswerString);
-        boolean b1=lanternsanswerString.equals(lanterns.getAnswer());
-        boolean b2=lanternsanswerString==lanterns.getAnswer();
-
-        if(lanternsanswerString.equals("众")){
-            Log.w("","right");
-            AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this, AlertDialog.THEME_HOLO_LIGHT)
-                    .setMessage("回答正确");
-            AlertDialog alertDialog=builder.create();
-            alertDialog.show();
-            Timer timer = new Timer();
-            TimerTask task = new TimerTask(){
-            	public void run(){
-            		Intent intent = new Intent(GameActivity.this, InfoActivity.class);
-            		startActivity(intent);
-            	}
-            };
-            timer.schedule(task, 1000);
-        }
-        else{
-            Log.w("","wrong");
-            AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this, AlertDialog.THEME_HOLO_LIGHT)
-                    .setMessage("回答错误,请重试");
-            AlertDialog alertDialog=builder.create();
-            alertDialog.show();
-        }
-    }
-    class RequestLanterns implements Runnable{
-        @Override
-        public void run() {
-
-//
-//            mHttpClient.get(API.GetLanterns,0,new RequestListener() {
-//                @Override
-//                public void onPreRequest() {
-//                    Log.w("","请求重发");
-//                }
-//
-//                @Override
-//                public void onRequestSuccess(BaseResponse response) {
-//                    Log.w("","请求成功");
-//                    lanterns=response.getObject(Lanterns.class);
-//                    Log.w("lanterns",lanterns.toString());
-//                    GameActivity.this.updateBarHandler.sendMessage(new Message());
-//                }
-//
-//                @Override
-//                public void onRequestError(int code, String msg) {
-//                    Log.w("","请求错误");
-//                }
-//
-//                @Override
-//                public void onRequestFail(int code, String msg) {
-//                    Log.w("","请求失败");
-//                }
-//            });
-
-            GameActivity.this.updateBarHandler.sendMessage(new Message());
-        }
-    }
-
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		// Inflate the menu; this adds items to the action bar if it is present.
-//		getMenuInflater().inflate(R.menu.game, menu);
-//		return true;
-//	}
-//	
-//	 @Override
-//	    public boolean onOptionsItemSelected(MenuItem item) {
-//	        // Handle action bar item clicks here. The action bar will
-//	        // automatically handle clicks on the Home/Up button, so long
-//	        // as you specify a parent activity in AndroidManifest.xml.
-//	        int id = item.getItemId();
-//
-//	        //noinspection SimplifiableIfStatement
-//	        if (id == R.id.action_settings) {
-//	            return true;
-//	        }
-//
-//	        return super.onOptionsItemSelected(item);
-//	    }
 	
 	private void initView(){
-		mTitle = (TextView) findViewById(R.id.ivTitleName);
-		mTitle.setText("游戏界面");
-		mTitleLeftBtn = (TextView) findViewById(R.id.ivTitleBtnLeft);
-		mTitleLeftBtn.setVisibility(View.VISIBLE);
-		mTitleLeftBtn.setOnClickListener(this);
+//		mTitle = (TextView) findViewById(R.id.ivTitleName);
+//		mTitle.setText("游戏界面");
+//		mTitleLeftBtn = (TextView) findViewById(R.id.ivTitleBtnLeft);
+//		mTitleLeftBtn.setVisibility(View.VISIBLE);
+//		mTitleLeftBtn.setOnClickListener(this);
+		
+		btnPlay = (ImageButton) findViewById(R.id.play_btn);
+        btnRefresh = (ImageButton) findViewById(R.id.refresh_btn);
+        btnTip = (ImageButton) findViewById(R.id.tip_btn);
+        imgTitle = (ImageView) findViewById(R.id.title_img);
+        gameView = (GameView) findViewById(R.id.game_view);
+        clock = (ImageView) findViewById(R.id.clock);
+        progress = (SeekBar) findViewById(R.id.timer);
+        textRefreshNum = (TextView) findViewById(R.id.text_refresh_num);
+        textTipNum = (TextView) findViewById(R.id.text_tip_num);
+        //XXX
+        progress.setMax(gameView.getTotalTime());
+        
+        btnPlay.setOnClickListener(this);
+        btnRefresh.setOnClickListener(this);
+        btnTip.setOnClickListener(this);
+        gameView.setOnTimerListener(this);
+        gameView.setOnStateListener(this);
+        gameView.setOnToolsChangedListener(this);
 	}
 
+	@Override
+    protected void onPause() {
+    	super.onPause();
+    	gameView.setMode(GameView.PAUSE);
+    }
+    
+    @Override
+	protected void onDestroy() {
+    	super.onDestroy();
+    	gameView.setMode(GameView.QUIT);
+	}
+	
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -176,9 +123,83 @@ public class GameActivity extends Activity implements OnClickListener{
 		case R.id.ivTitleBtnLeft:
 			finish();
 			break;
+		case R.id.play_btn:
+    		Animation scaleOut = AnimationUtils.loadAnimation(this,R.anim.scale_anim_out);
+        	Animation transIn = AnimationUtils.loadAnimation(this,R.anim.trans_in);
+    		
+    		btnPlay.startAnimation(scaleOut);
+    		btnPlay.setVisibility(View.GONE);
+    		imgTitle.setVisibility(View.GONE);
+    		gameView.setVisibility(View.VISIBLE);
+    		
+    		btnRefresh.setVisibility(View.VISIBLE);
+    		btnTip.setVisibility(View.VISIBLE);
+    		progress.setVisibility(View.VISIBLE);
+    		clock.setVisibility(View.VISIBLE);
+    		textRefreshNum.setVisibility(View.VISIBLE);
+    		textTipNum.setVisibility(View.VISIBLE);
+    		
+    		btnRefresh.startAnimation(transIn);
+    		btnTip.startAnimation(transIn);
+    		gameView.startAnimation(transIn);
+    		player.pause();
+    		gameView.startPlay();
+    		break;
+    	case R.id.refresh_btn:
+    		Animation shake01 = AnimationUtils.loadAnimation(this,R.anim.shake);
+    		btnRefresh.startAnimation(shake01);
+    		gameView.refreshChange();
+    		break;
+    	case R.id.tip_btn:
+    		Animation shake02 = AnimationUtils.loadAnimation(this,R.anim.shake);
+    		btnTip.startAnimation(shake02);
+    		gameView.autoClear();
+    		break;
 		default:
 			break;
 		}
+	}
+	
+	@Override
+	public void onTimer(int leftTime) {
+		Log.i("onTimer", leftTime+"");
+		progress.setProgress(leftTime);
+	}
+
+	@Override
+	public void OnStateChanged(int StateMode) {
+		switch(StateMode){
+		case GameView.WIN:
+			handler.sendEmptyMessage(0);
+			break;
+		case GameView.LOSE:
+			handler.sendEmptyMessage(1);
+			break;
+		case GameView.PAUSE:
+			player.stop();
+	    	gameView.player.stop();
+	    	gameView.stopTimer();
+			break;
+		case GameView.QUIT:
+			player.release();
+	    	gameView.player.release();
+	    	gameView.stopTimer();
+	    	break;
+		}
+	}
+
+	@Override
+	public void onRefreshChanged(int count) {
+		textRefreshNum.setText(""+gameView.getRefreshNum());
+	}
+
+	@Override
+	public void onTipChanged(int count) {
+		textTipNum.setText(""+gameView.getTipNum());
+	}
+	
+	public void quit(){
+		this.finish();
 	}
 
 }
