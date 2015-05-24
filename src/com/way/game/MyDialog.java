@@ -1,6 +1,7 @@
 package com.way.game;
 
 import com.way.activity.GameActivity;
+import com.way.activity.InfoActivity;
 import com.way.game.GameView;
 import com.way.push.R;
 
@@ -8,6 +9,8 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.sax.StartElementListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -33,6 +36,9 @@ public class MyDialog extends Dialog implements OnClickListener{
 		text_time.setText(text_time.getText().toString().replace("$", String.valueOf(time)));
 		btn_menu.setOnClickListener(this);
 		btn_next.setOnClickListener(this);
+		if (msg == "Ê¤Àû£¡")
+			btn_next.setVisibility(View.VISIBLE);
+		else btn_next.setVisibility(View.INVISIBLE);
 		btn_replay.setOnClickListener(this);
 		this.setCancelable(false);
 	}
@@ -64,7 +70,9 @@ public class MyDialog extends Dialog implements OnClickListener{
 			gameview.startPlay();
 			break;
 		case R.id.next_imgbtn:
-			gameview.startNextPlay();
+//			gameview.startNextPlay();
+			Intent intent = new Intent(context, InfoActivity.class);
+			context.startActivity(intent);
 			break;
 		}
 	}

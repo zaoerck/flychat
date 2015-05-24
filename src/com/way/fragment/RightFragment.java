@@ -325,7 +325,7 @@ public class RightFragment extends Fragment implements OnClickListener,
 				intent.setType("text/plain");
 				intent.putExtra(Intent.EXTRA_SUBJECT, "推聊Android客户端 - 信息反馈");
 				intent.putExtra(Intent.EXTRA_TEXT, content);
-				intent.setData(Uri.parse("mailto:way.ping.li@gmail.com"));
+				intent.setData(Uri.parse("mailto:zaoerck@gmail.com"));
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				getActivity().startActivity(intent);
 				if (mSlidingLayer.isOpened()) {

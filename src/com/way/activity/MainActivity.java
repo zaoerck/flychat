@@ -118,6 +118,7 @@ public class MainActivity extends BaseSlidingFragmentActivity implements
 		setContentView(R.layout.main_center_layout);
 		initData();
 		initView(savedInstanceState);
+		
 	}
 
 	@Override

@@ -113,7 +113,7 @@ public class MapActivity extends Activity implements OnClickListener{
         LocationClientOption option = new LocationClientOption();
         option.setOpenGps(true);// 打开gps
         option.setCoorType("bd09ll"); // 设置坐标类型
-//        option.setScanSpan(100000);
+//        option.setScanSpan(10000);
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
         mLocationClient.setLocOption(option);
         mLocationClient.start();

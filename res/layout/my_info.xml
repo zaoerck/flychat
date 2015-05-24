@@ -267,7 +267,7 @@
                 android:layout_marginBottom="14dp"
                 android:layout_marginTop="14dp"
                 android:background="@drawable/btn_style_green"
-                android:text="使用百度账号登录"
+                android:text="加为好友"
                 android:textColor="#fff"
                 android:textSize="18sp" />
         </LinearLayout>

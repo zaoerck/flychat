@@ -51,7 +51,7 @@ public class GameView extends BoardView {
 	public GameView(Context context, AttributeSet atts) {
 		super(context, atts);
 		player = MediaPlayer.create(context, R.raw.back2new); 
-		player.setLooping(true);//����ѭ������
+		player.setLooping(true);//设置循环播放
 	}
 	
 	public static final int ID_SOUND_CHOOSE = 0;
@@ -77,11 +77,11 @@ public class GameView extends BoardView {
 		GameView.this.invalidate();
 	}
 	
-	public void startNextPlay(){
-		//��һ��Ϊ��һ�ؼ�ȥ10���ʱ��
-		totalTime-=10;
-		startPlay();
-	}
+//	public void startNextPlay(){
+//		//下一关为上一关减去10秒的时间
+//		totalTime-=10;
+//		startPlay();
+//	}
 	
 	public static void initSound(Context context){
 		 soundPlay = new SoundPlay();
