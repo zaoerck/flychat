@@ -120,7 +120,7 @@ public class FloatViewService extends Service
             	Intent intent = new Intent(getApplicationContext(),ShapeActivity.class);
             	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             	startActivity(intent);
-            	Toast.makeText(FloatViewService.this, "跳转到添加好友", Toast.LENGTH_SHORT).show();  
+            	Toast.makeText(FloatViewService.this, "摇一摇添加好友", Toast.LENGTH_SHORT).show();  
             }  
         });  
     }  
