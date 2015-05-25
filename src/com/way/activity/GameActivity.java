@@ -109,7 +109,14 @@ public class GameActivity extends Activity
     	super.onPause();
     	gameView.setMode(GameView.PAUSE);
     }
-    
+	
+	@Override
+	protected void onStop(){
+		super.onStop();
+		gameView.setMode(GameView.QUIT);
+		this.finish();
+	}
+	
     @Override
 	protected void onDestroy() {
     	super.onDestroy();
@@ -197,6 +204,7 @@ public class GameActivity extends Activity
 	public void onTipChanged(int count) {
 		textTipNum.setText(""+gameView.getTipNum());
 	}
+	
 	
 	public void quit(){
 		this.finish();
