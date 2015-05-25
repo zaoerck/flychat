@@ -148,7 +148,8 @@
         </activity>
         <activity
             android:name="com.way.activity.ShapeActivity"
-            android:label="@string/title_activity_map" >
+            android:label="@string/title_activity_map"
+            android:hardwareAccelerated="false" >
         </activity>
 
         <!-- 百度地图 -->

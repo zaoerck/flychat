@@ -20,8 +20,6 @@ import android.widget.TextView;
 
 public class ShapeActivity extends Activity implements OnClickListener, SensorEventListener{
 	private TextView mTitle, mTitleLeftBtn;
-	TextView tv = null;  
-    Button button = null;  
     SensorManager sensorManager = null;  
     Vibrator vibrator = null; 
     
@@ -30,11 +28,6 @@ public class ShapeActivity extends Activity implements OnClickListener, SensorEv
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shape);
 		initView();
-		
-		 
-        tv = (TextView) findViewById(R.id.mapTextView);  
-          
-  
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);  
         vibrator = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE); 
 	}

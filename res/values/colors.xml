@@ -3,6 +3,7 @@
      <color name="text_shadow_color">#66000000</color>
     <drawable name="trans">@color/color_hei_8</drawable>
     <color name="color_hei">#ff000000</color>
+    <color name="shape_bgcolor">#9fa1a0</color>
     <color name="color_hei_8">#00000000</color>
     <color name="color_cihei">#ff333333</color>
     <color name="color_shenhui">#ff999999</color>
