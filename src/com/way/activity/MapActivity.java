@@ -54,7 +54,6 @@ public class MapActivity extends Activity implements OnClickListener{
 	
 
 	private TextView mTitle, mTitleLeftBtn;
-	TextView tv = null;  
     
     public BDLocationListener myListener = new BDLocationListener() {
         @Override

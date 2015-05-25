@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -81,6 +82,10 @@ public class RightFragment extends Fragment implements OnClickListener,
 	private WheelView mHeadWheel;
 	private WheelView mSexWheel;
 	private EditText mNickEt;
+	
+	private Button addFriend;
+	private TextView nick_name, id_number;
+	
 	private OnPullRefreshSwitchListener listener;
 
 	public interface OnPullRefreshSwitchListener {
@@ -125,6 +130,12 @@ public class RightFragment extends Fragment implements OnClickListener,
 	private void initMyInfoView() {
 		// TODO Auto-generated method stub
 		mMyInfoView = mInflater.inflate(R.layout.my_info, null);
+		addFriend = (Button) mMyInfoView.findViewById(R.id.addFirend);
+		addFriend.setVisibility(View.INVISIBLE);
+		nick_name = (TextView)mMyInfoView.findViewById(R.id.nick_name);
+		id_number = (TextView)mMyInfoView.findViewById(R.id.id_number);
+		nick_name.setText(mSpUtil.getNick());
+		id_number.setText("ID：" + mSpUtil.getUserId());
 	}
 
 	private void initFeedBackView() {

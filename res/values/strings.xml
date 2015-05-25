@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
+    <!--  个人主页 -->
+    <string name="signature">爱生活，爱安卓!</string>
+    <string name="area">南京</string>
+    <string name="gender">男</string>
 	
     <!-- 连连看 -->
     <string name="hello">Hello World, MainActivity!</string>

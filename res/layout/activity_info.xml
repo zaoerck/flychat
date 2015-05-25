@@ -8,5 +8,5 @@
 
     <include layout="@layout/common_title_bg" />
 
-
+	<include layout="@layout/center_info"/>
 </LinearLayout>
