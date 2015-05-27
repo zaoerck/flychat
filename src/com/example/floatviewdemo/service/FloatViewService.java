@@ -123,7 +123,8 @@ public class FloatViewService extends Service
             	Toast.makeText(FloatViewService.this, "摇一摇添加好友", Toast.LENGTH_SHORT).show();  
             }  
         });  
-    }  
+    }
+    
       
     @Override  
     public void onDestroy()   
